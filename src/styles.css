@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Botão de Carregar ROM - Bem Acessível */
+.load-rom-button {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.load-rom-button:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+  background: linear-gradient(45deg, #ff8787, #ff6b8b);
+}
+
+.load-rom-button:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+.load-rom-button.rom-loaded {
+  background: linear-gradient(45deg, #51cf66, #40c057);
+  box-shadow: 0 8px 25px rgba(81, 207, 102, 0.4);
+}
+
+.load-rom-button.rom-loaded:hover {
+  background: linear-gradient(45deg, #69db7c, #51cf66);
+  box-shadow: 0 12px 35px rgba(81, 207, 102, 0.6);
+}
+
+/* Container do Emulador */
+#emulator-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#gba-screen {
+  border: 4px solid #2d2d44;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  background: #000000;
+}
+
+/* Controles do GBA */
+.gba-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  margin-top: 20px;
+  user-select: none;
+}
+
+/* D-Pad */
+.dpad {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.dpad-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(145deg, #2d2d44, #1a1a2e);
+  border: 2px solid #4a4a6a;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dpad-btn:active,
+.dpad-btn.active {
+  background: linear-gradient(145deg, #4a4a6a, #5a5a8a);
+  transform: scale(0.95);
+}
+
+.dpad-up {
+  top: 0;
+  left: 40px;
+  border-radius: 8px 8px 4px 4px;
+}
+
+.dpad-down {
+  bottom: 0;
+  left: 40px;
+  border-radius: 4px 4px 8px 8px;
+}
+
+.dpad-left {
+  top: 40px;
+  left: 0;
+  border-radius: 8px 4px 4px 8px;
+}
+
+.dpad-right {
+  top: 40px;
+  right: 0;
+  border-radius: 4px 8px 8px 4px;
+}
+
+/* Botões de Ação */
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  transform: rotate(-25deg);
+}
+
+.action-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #4a4a6a;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-a {
+  background: linear-gradient(145deg, #e74c3c, #c0392b);
+  color: #ffffff;
+}
+
+.btn-b {
+  background: linear-gradient(145deg, #3498db, #2980b9);
+  color: #ffffff;
+}
+
+.action-btn:active,
+.action-btn.active {
+  transform: scale(0.9);
+  filter: brightness(1.2);
+}
+
+/* Botões Menu */
+.menu-buttons {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu-btn {
+  padding: 8px 20px;
+  background: linear-gradient(145deg, #5a5a7a, #4a4a6a);
+  border: 2px solid #6a6a8a;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.1s ease;
+}
+
+.menu-btn:active,
+.menu-btn.active {
+  background: linear-gradient(145deg, #7a7a9a, #6a6a8a);
+  transform: scale(0.95);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .load-rom-button {
+    top: 10px;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  #emulator-container {
+    margin-top: 80px;
+  }
+
+  #gba-screen {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .gba-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .dpad {
+    width: 100px;
+    height: 100px;
+  }
+
+  .dpad-btn {
+    width: 33px;
+    height: 33px;
+    font-size: 14px;
+  }
+
+  .dpad-up, .dpad-down {
+    left: 33px;
+  }
+
+  .dpad-left, .dpad-right {
+    top: 33px;
+  }
+
+  .action-buttons {
+    transform: rotate(0deg);
+  }
+
+  .action-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .menu-buttons {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+  }
+}
+
+/* Animação de pulso para o botão de carregar */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 35px rgba(255, 107, 107, 0.7);
+  }
+}
+
+.load-rom-button:not(.rom-loaded) {
+  animation: pulse 2s infinite;
+}
+
+/* Dicas de controles */
+.controls-hint {
+  margin-top: 30px;
+  padding: 15px 25px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.controls-hint strong {
+  color: #ff6b6b;
+}
+
+/* Drag and drop overlay */
+body.dragging {
+  opacity: 0.7;
+}
+
+body.dragging::after {
+  content: 'Solte a ROM aqui';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 40px 60px;
+  border-radius: 20px;
+  z-index: 2000;
+  pointer-events: none;
+}

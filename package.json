@@ -1,0 +1,19 @@
+{
+  "name": "gba-emulator-typescript",
+  "version": "1.0.0",
+  "description": "Emulador de Game Boy Advance (GBA) em TypeScript que roda no navegador",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["gba", "emulator", "typescript", "gameboy"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.7"
+  }
+}
